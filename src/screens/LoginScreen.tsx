@@ -1,32 +1,29 @@
+import { useRouter } from 'expo-router'; // 1. Importamos o roteador aqui
 import React, { useState } from 'react';
 import {
-  View,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
+  View,
 } from 'react-native';
 
-// Substitua pelo seu ícone de carro ou importe de uma lib como @expo/vector-icons
-// import { Ionicons } from '@expo/vector-icons';
-
 interface LoginScreenProps {
-  onBack?: () => void;
   onForgotPassword?: () => void;
   onRegister?: () => void;
   onLogin?: (email: string, password: string) => void;
 }
 
 export default function LoginScreen({
-  onBack,
   onForgotPassword,
   onRegister,
   onLogin,
 }: LoginScreenProps) {
+  const router = useRouter(); // 2. Iniciamos o roteador
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -47,13 +44,16 @@ export default function LoginScreen({
         {/* Ícone do carro */}
         <View style={styles.iconWrapper}>
           <View style={styles.iconCircle}>
-            {/* Troque pelo componente de ícone da sua lib */}
             <Text style={styles.iconEmoji}>🚗</Text>
           </View>
         </View>
 
         {/* Botão Voltar */}
-        <TouchableOpacity style={styles.backButton} onPress={onBack} activeOpacity={0.7}>
+        <TouchableOpacity 
+          style={styles.backButton} 
+          onPress={() => router.back()} // 3. Adicionamos a função de voltar
+          activeOpacity={0.7}
+        >
           <Text style={styles.backText}>Voltar</Text>
         </TouchableOpacity>
 
@@ -78,8 +78,10 @@ export default function LoginScreen({
             value={password}
             onChangeText={setPassword}
           />
-
-          <TouchableOpacity onPress={onForgotPassword} activeOpacity={0.7}>
+          <TouchableOpacity 
+            onPress={() => router.push('/forgot-password')} 
+            activeOpacity={0.7}
+          >
             <Text style={styles.forgotText}>Esqueci a senha</Text>
           </TouchableOpacity>
 
