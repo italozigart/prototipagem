@@ -24,7 +24,7 @@ export default function ListarCarona() {
         <View >
           <View>
             <Image
-              source={require('@/src/assets/images/Logo.png')}
+              source={require('@/src/assets/images/Logoh.png')}
               style={styles.LogoImage}
             />
           </View>
@@ -83,7 +83,7 @@ export default function ListarCarona() {
 const styles = StyleSheet.create({
   LogoImage: {
     margin: 'auto',
-    width: 100,
+    width: 200,
     height: 100,
     resizeMode: 'contain',
   },
@@ -104,16 +104,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
-  logoText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#333',
-  },
-  subLogoText: {
-    fontSize: 12,
-    color: '#999',
-    marginTop: 2,
-  },
   menuIcon: {
     width: 44,
     height: 44,
@@ -123,7 +113,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#333',
     marginLeft: 16,
@@ -145,17 +135,14 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   icon: {
-    position: 'absolute',
-    left: '15%',
-    top: '50%',
-    transform: [{ translateY: -12 }],
+    fontSize: 30,
+    right: '26%',
   },
   buttonText: {
   color: 'white',
-  fontSize: 16,
-  marginLeft: 16,
+  fontSize: 14,
+  right: 5,
   fontWeight: '600',
-  textAlign: 'center',
 },
   bottomNav: {
   flexDirection: 'row',
