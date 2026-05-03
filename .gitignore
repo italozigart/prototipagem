@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 expo-env.d.ts
 # @end expo-cli
+/.vscode
+/.vscode
+.vscode/extensions.json

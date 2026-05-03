@@ -1,20 +1,13 @@
-import { RootStackParamList } from '@/app/index';
+import { RootStackParamList } from "@/app/index";
 import { AntDesign, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { useRouter } from 'expo-router';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
 
 type NavProp = StackNavigationProp<RootStackParamList>;
 export default function ListarCarona() {
-  const router = useRouter();
-
-  const buttonStyle = {
-    backgroundColor: '#E52929',
-    paddingVertical: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-    marginVertical: 12,
-  };
+  const navigation = useNavigation<NavProp>();
 
   return (
 
@@ -35,14 +28,14 @@ export default function ListarCarona() {
       </View>
 
       {/* Title */}
-      <Text style={styles.title}>Lista de Caronas:</Text>
+      <Text style={styles.title}> Lista de Caronas</Text>
 
       {/* Scroll Content */}
       <ScrollView style={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Button 1 - Oferecer Viagem */}
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#E52929' }]}
-          onPress={() => router.push('/')}
+          onPress={() => navigation.navigate('OferecerViagem')}
         >
           <MaterialCommunityIcons name="car" style={styles.icon} size={24} color="white" />
           <Text style={styles.buttonText}>Oferecer{'\n'}Viagem</Text>
@@ -51,28 +44,28 @@ export default function ListarCarona() {
         {/* Button 2 - Solicitar Carona */}
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#E52929' }]}
-          onPress={() => router.push("/")}
+
         >
-          <FontAwesome5 name="hand-holding"  style={styles.icon} size={24} color="white" />
+          <FontAwesome5 name="hand-holding" style={styles.icon} size={24} color="white" />
           <Text style={styles.buttonText}>Solicitar{'\n'}Carona</Text>
         </TouchableOpacity>
       </ScrollView>
 
       {/* Bottom Navigation */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem} onPress={() => router.push('/')}>
+        <TouchableOpacity style={styles.navItem}>
           <AntDesign name="home" size={24} color="#444D5A" />
         </TouchableOpacity>
 
         <View style={styles.navDivider} />
 
-        <TouchableOpacity style={styles.navItem} onPress={() => router.push('/')}>
+        <TouchableOpacity style={styles.navItem}>
           <MaterialCommunityIcons name="file-document-outline" size={24} color="#E52929" />
         </TouchableOpacity>
 
         <View style={styles.navDivider} />
 
-        <TouchableOpacity style={styles.navItem} onPress={() => router.push('/')}>
+        <TouchableOpacity style={styles.navItem}>
           <FontAwesome5 name="user" size={24} color="#444D5A" />
         </TouchableOpacity>
       </View>
@@ -113,7 +106,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   title: {
-    fontSize: 16,
+    fontSize: 26,
+    textAlign: 'center',
     fontWeight: 'bold',
     color: '#333',
     marginLeft: 16,
@@ -139,29 +133,29 @@ const styles = StyleSheet.create({
     right: '26%',
   },
   buttonText: {
-  color: 'white',
-  fontSize: 14,
-  right: 5,
-  fontWeight: '600',
-},
+    color: 'white',
+    fontSize: 14,
+    right: 5,
+    fontWeight: '600',
+  },
   bottomNav: {
-  flexDirection: 'row',
-  backgroundColor: '#EBEBEB',
-  borderTopWidth: 1,
-  borderTopColor: '#ddd',
-  height: 60,
-  alignItems: 'center',
-  justifyContent: 'space-around',
-  paddingBottom: 8,
-},
+    flexDirection: 'row',
+    backgroundColor: '#EBEBEB',
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingBottom: 8,
+  },
   navItem: {
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-},
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   navDivider: {
-  width: 1,
-  height: 30,
-  backgroundColor: '#CCC',
-},
+    width: 1,
+    height: 30,
+    backgroundColor: '#CCC',
+  },
 });

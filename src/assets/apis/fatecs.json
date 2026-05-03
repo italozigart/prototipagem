@@ -1,0 +1,576 @@
+[
+  {
+    "cidade": "Adamantina",
+    "nome": "Fatec Adamantina",
+    "endereco": "Rua Paraná, 400 (Antigo CEFAM) - Jardim Brasil",
+    "cep": "17800-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Americana",
+    "nome": "Fatec Americana - Ministro Ralph Biasi",
+    "endereco": "R. Emílio de Menezes, s/n - Gleba B - Vila Amorim",
+    "cep": "13469-111",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Araçatuba",
+    "nome": "Fatec Araçatuba - Prof. Fernando Amaral de Almeida Prado",
+    "endereco": "Av. Prestes Maia, 1764 - Jd. Ipanema",
+    "cep": "16052-045",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Araraquara",
+    "nome": "Fatec Araraquara - Prof. José Arana Varela",
+    "endereco": "Rua Precide Scarpino Martim, 126 - Jd. Santa Clara",
+    "cep": "14811-373",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Araras",
+    "nome": "Fatec Araras - Antonio Brambilla",
+    "endereco": "Rua Jarbas Leme de Godoy, 875 - Jd. José Ometto II",
+    "cep": "13606-389",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Assis",
+    "nome": "Fatec Assis - Prof. Dr. José Luiz Guimarães",
+    "endereco": "Av. Dom Antônio, 2100 - Parque Universitário",
+    "cep": "19806-173",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Atibaia",
+    "nome": "Fatec Atibaia",
+    "endereco": "Avenida Jerônimo de Camargo, 421 - Caetetuba",
+    "cep": "12951-540",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Barretos",
+    "nome": "Fatec Barretos - Profª. Édi Salvi Lima",
+    "endereco": "Rua 18, nº 535 - Centro",
+    "cep": "14780-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Barueri",
+    "nome": "Fatec Barueri - Padre Danilo José de Oliveira Ohl",
+    "endereco": "Av. Carlos Capriotti, 123 - Novo Centro Comercial",
+    "cep": "06401-136",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Bauru",
+    "nome": "Fatec Bauru",
+    "endereco": "R. Manoel Bento Cruz, 3-30 - Centro",
+    "cep": "17015-171",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Bebedouro",
+    "nome": "Fatec Bebedouro - Jorge Caram Sabbag",
+    "endereco": "Rua Dr. Oscar Werneck, 1286 - Centro",
+    "cep": "14701-120",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Botucatu",
+    "nome": "Fatec Botucatu",
+    "endereco": "Av. José Ítalo Bacchi, s/n - Jd. Aeroporto",
+    "cep": "18606-855",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Bragança Paulista",
+    "nome": "Fatec Bragança Paulista - Jornalista Omair Fagundes de Oliveira",
+    "endereco": "Rua das Indústrias, 130 - Uberaba - Distrito Industrial IV",
+    "cep": "12926-674",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Campinas",
+    "nome": "Fatec Campinas",
+    "endereco": "Av. Cônego Antônio Roccatto, 593 - Jd. Santa Mônica",
+    "cep": "13082-014",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Capão Bonito",
+    "nome": "Fatec Capão Bonito",
+    "endereco": "R. Amantino de Oliveira Ramos, 60 - Terras de Embiruçu",
+    "cep": "18304-755",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Carapicuíba",
+    "nome": "Fatec Carapicuíba",
+    "endereco": "Av. Francisco Pignatari, 650 - Vila Gustavo Correia",
+    "cep": "06310-390",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Catanduva",
+    "nome": "Fatec Catanduva",
+    "endereco": "R. Maranhão, 898 - Centro",
+    "cep": "15800-020",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Cotia",
+    "nome": "Fatec Cotia",
+    "endereco": "Rua Nelson Raineri, 700 - Bairro do Lageado",
+    "cep": "06702-155",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Cruzeiro",
+    "nome": "Fatec Cruzeiro - Prof. Waldomiro May",
+    "endereco": "Av. Rotary, 383 - Vila Paulista",
+    "cep": "12701-170",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Diadema",
+    "nome": "Fatec Diadema - Luigi Papaiz",
+    "endereco": "Av. Luiz Merenda, 443 - Jardim Campanário",
+    "cep": "09931-390",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Ferraz de Vasconcelos",
+    "nome": "Fatec Ferraz de Vasconcelos",
+    "endereco": "Rua Carlos de Carvalho, 200 - Jardim São João",
+    "cep": "08545-120",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Franca",
+    "nome": "Fatec Franca - Dr. Thomaz Novelino",
+    "endereco": "R. Irênio Grecco, 4580 - Vila Imperador",
+    "cep": "14405-191",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Franco da Rocha",
+    "nome": "Fatec Franco da Rocha - Giuliano Cecchettini",
+    "endereco": "Rodovia Prefeito Luiz Salomão Chamma, nº 240 - Pouso Alegre",
+    "cep": "07857-050",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Garça",
+    "nome": "Fatec Garça - Dep. Julio Julinho Marcondes de Moura",
+    "endereco": "Av. Presidente Vargas, 2331 - José Ribeiro",
+    "cep": "17404-500",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Guaratinguetá",
+    "nome": "Fatec Guaratinguetá - Prof. João Mod",
+    "endereco": "Av Prof. João Rodrigues Alckmin, 1501 - Jd. Esperança",
+    "cep": "12517-475",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Guarulhos",
+    "nome": "Fatec Guarulhos",
+    "endereco": "Rua Cristóbal Cláudio Elilo, 88 - Parque Cecap",
+    "cep": "07190-065",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Ilha Solteira",
+    "nome": "Fatec Ilha Solteira",
+    "endereco": "Avenida Professor José Carlos Rossi, 1370 - Cinturão Verde",
+    "cep": "15385-470",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Indaiatuba",
+    "nome": "Fatec Indaiatuba - Dr. Archimedes Lammoglia",
+    "endereco": "R. D. Pedro I, 65 - Cidade Nova I",
+    "cep": "13334-100",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Itapetininga",
+    "nome": "Fatec Itapetininga - Prof. Antonio Belizandro Barbosa Rezende",
+    "endereco": "R. Dr. João Vieira de Camargo, 104 - Vila Barth",
+    "cep": "18205-600",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Itapira",
+    "nome": "Fatec Itapira - Ogari de Castro Pacheco",
+    "endereco": "Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista",
+    "cep": "13974-080",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Itaquaquecetuba",
+    "nome": "Fatec Itaquaquecetuba",
+    "endereco": "Av. Itaquaquecetuba, 711 - Vila Monte Belo",
+    "cep": "08577-210",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Itatiba",
+    "nome": "Fatec Itatiba - Maria Eunice Amadeo de Almeida",
+    "endereco": "Rua Daniel Peçanha de Moraes, 220 - Jardim Salessi",
+    "cep": "13251-140",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Itu",
+    "nome": "Fatec Itu - Dom Amaury Castanho",
+    "endereco": "Av. Tiradentes, 1211 - Parque Industrial",
+    "cep": "13309-640",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Jaboticabal",
+    "nome": "Fatec Jaboticabal - Nilo de Stéfani",
+    "endereco": "Av. Eduardo Zambianchi, 31 - Vila Industrial",
+    "cep": "14883-130",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Jacareí",
+    "nome": "Fatec Jacareí - Prof. Francisco de Moura",
+    "endereco": "Av. Faria Lima, 155 - Jardim Santa Maria",
+    "cep": "12328-070",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Jales",
+    "nome": "Fatec Jales - Prof. José Camargo",
+    "endereco": "R. Vicente Leporace, 2630 - Jd. Trianon",
+    "cep": "15703-116",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Jaú",
+    "nome": "Fatec Jahu - Octavio Celso Pacheco de Almeida Prado",
+    "endereco": "R. Frei Galvão, s/n - Jd. Pedro Ometto",
+    "cep": "17212-599",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Jundiaí",
+    "nome": "Fatec Jundiaí - Deputado Ary Fossen",
+    "endereco": "Av. União dos Ferroviários, 1760 - Centro",
+    "cep": "13201-160",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Lins",
+    "nome": "Fatec Lins - Prof. Antonio Seabra",
+    "endereco": "Estrada Mario Covas Jr., Km 1 (Estrada Vicinal Lins - Guaímbe) - Vila Guararapes",
+    "cep": "16403-025",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Marília",
+    "nome": "Fatec Marília - Estudante Rafael Almeida Camarinha",
+    "endereco": "Rua Adão Stroppa, 200 - Campus Universitário - Jardim Acapulco",
+    "cep": "17525-180",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Matão",
+    "nome": "Fatec Matão - Luiz Marchesan",
+    "endereco": "Avenida Habib Gabriel, 1360 - Bairro Residencial Olívio Benassi",
+    "cep": "15990-539",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Mauá",
+    "nome": "Fatec Mauá",
+    "endereco": "Av. Antonia Rosa Fioravante, 804 - Centro",
+    "cep": "09390-120",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Mococa",
+    "nome": "Fatec Mococa - Mário Robertson de Sylos Filho",
+    "endereco": "Av. Dr. Américo Pereira Lima, s/n - Jd. Lavínia",
+    "cep": "13736-260",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Mogi das Cruzes",
+    "nome": "Fatec Mogi das Cruzes",
+    "endereco": "R. Carlos Barattino, 908 - Vila Nova Mogilar",
+    "cep": "08773-600",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Mogi Mirim",
+    "nome": "Fatec Mogi Mirim - Arthur de Azevedo",
+    "endereco": "Rua Ariovaldo Silveira Franco, 567 - Jd. 31 de Março",
+    "cep": "13801-005",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Olímpia",
+    "nome": "Fatec Olímpia",
+    "endereco": "Av. Governador Adhemar Pereira de Barros, km3 - Recanto Bela Vista",
+    "cep": "15400-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Osasco",
+    "nome": "Fatec Osasco - Pref. Hirant Sanazar",
+    "endereco": "R. Pedro Rissato, 30 - Vila dos Remédios",
+    "cep": "06296-220",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Ourinhos",
+    "nome": "Fatec Ourinhos",
+    "endereco": "Av. Vitalina Marcusso, 1400 - Campus Universitário",
+    "cep": "19910-206",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Pindamonhangaba",
+    "nome": "Fatec Pindamonhangaba - José Renato Guaycuru San Martim",
+    "endereco": "Rodovia Vereador Abel Fabricio Dias (SP 62), 4010 - Água Preta",
+    "cep": "12414-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Piracicaba",
+    "nome": "Fatec Piracicaba - Dep. Roque Trevisan",
+    "endereco": "Rua Diácono Jair de Olveira, 651 - Santa Rosa",
+    "cep": "13414-155",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Pompéia",
+    "nome": "Fatec Pompéia - Shunji Nishimura",
+    "endereco": "Av. Shunji Nishimura, 605 - Distrito Industrial",
+    "cep": "17580-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Porto Ferreira",
+    "nome": "Fatec Porto Ferreira",
+    "endereco": "Rua Padre Nestor C. Maranhão, 40 - Jardim Aeroporto",
+    "cep": "13660-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Praia Grande",
+    "nome": "Fatec Praia Grande",
+    "endereco": "Pça. 19 de Janeiro, 144 - Boqueirão",
+    "cep": "11700-100",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Presidente Prudente",
+    "nome": "Fatec Presidente Prudente",
+    "endereco": "R. Teresina, 75 - Vila Paulo Roberto",
+    "cep": "19046-230",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Registro",
+    "nome": "Fatec Registro",
+    "endereco": "Av. Clara Gianotti de Souza, 257 - Centro",
+    "cep": null,
+    "uf": "SP"
+  },
+  {
+    "cidade": "Ribeirão Preto",
+    "nome": "Fatec Ribeirão Preto",
+    "endereco": "Av. Pio XII, 1255 - Vila Virginia",
+    "cep": "14030-250",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Rio Claro",
+    "nome": "Fatec Rio Claro",
+    "endereco": "Rua 2, nº 2.877 - Vila Operária",
+    "cep": "13500-312",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Santana de Parnaíba",
+    "nome": "Fatec Santana de Parnaíba",
+    "endereco": "Av. Tenente Marques, 5136 - Fazendinha",
+    "cep": "06529-001",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Santo André",
+    "nome": "Fatec Santo André",
+    "endereco": "R. Prefeito Justino Paixão, 150 - Centro",
+    "cep": "09020-130",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Santos",
+    "nome": "Fatec Baixada Santista - Rubens Lara",
+    "endereco": "Av. Senador Feijó, 350 - Vila Mathias",
+    "cep": "11015-502",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Bernardo do Campo",
+    "nome": "Fatec São Bernardo do Campo - Adib Moisés Dib",
+    "endereco": "Av. Pereira Barreto, 400 - Vila Baeta Neves",
+    "cep": "09751-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Caetano do Sul",
+    "nome": "Fatec São Caetano do Sul - Antonio Russo",
+    "endereco": "R. Bell Aliance, 225 - Jd. São Caetano",
+    "cep": "09581-420",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Carlos",
+    "nome": "Fatec São Carlos",
+    "endereco": "Avenida Araraquara, 451 - Vila Brasília",
+    "cep": "13566-770",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São José do Rio Preto",
+    "nome": "Fatec São José do Rio Preto - Profª Olga Malluk da Silva",
+    "endereco": "R. Fernandópolis, 2510 - Eldorado",
+    "cep": "15043-020",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São José dos Campos",
+    "nome": "Fatec São José dos Campos - Prof. Jessen Vidal",
+    "endereco": "Avenida Cesare Mansueto Giulio Lattes, 1350 - Eugênio de Melo",
+    "cep": "12247-014",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Paulo",
+    "nome": "Fatec Ipiranga - Pastor Enéas Tognini",
+    "endereco": "R. Frei João, 59 - Ipiranga",
+    "cep": "04280-130",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Paulo",
+    "nome": "Fatec Itaquera - Prof. Miguel Reale",
+    "endereco": "Av. Engenheiro Ardevan Machado, s/n - Vila Carmosina",
+    "cep": "08295-003",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Paulo",
+    "nome": "Fatec São Paulo",
+    "endereco": "Av. Tiradentes, 615 - Bom Retiro",
+    "cep": "01101-010",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Paulo",
+    "nome": "Fatec Sebrae",
+    "endereco": "Alameda Nothman, 598 - Campos Elíseos",
+    "cep": "01204-001",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Paulo",
+    "nome": "Fatec Tatuapé - Victor Civita",
+    "endereco": "R. Antonio de Barros, 800 - Tatuapé",
+    "cep": "03401-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Paulo",
+    "nome": "Fatec Zona Leste",
+    "endereco": "Av. Águia de Haia, 2983 - Cidade A. E. Carvalho",
+    "cep": "03694-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Paulo",
+    "nome": "Fatec Zona Sul - Dom Paulo Evaristo Arns",
+    "endereco": "R. Frederico Grotte, 322 - Jd. São Luis",
+    "cep": "05818-270",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Roque",
+    "nome": "Fatec São Roque",
+    "endereco": "Rua Marechal Deodoro da Fonseca, 132 - Centro",
+    "cep": "18130-070",
+    "uf": "SP"
+  },
+  {
+    "cidade": "São Sebastião",
+    "nome": "Fatec São Sebastião",
+    "endereco": "R. Ítalo Nascimento, 366 - Porto Grande",
+    "cep": "11608-248",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Sertãozinho",
+    "nome": "Fatec Sertãozinho - Dep. Waldyr Alceu Trigo",
+    "endereco": "R. Jordão Borghetti, 480 - Jardim Recreio",
+    "cep": "14170-120",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Sorocaba",
+    "nome": "Fatec Sorocaba - José Crespo Gonzales",
+    "endereco": "Av. Eng. Carlos Reinaldo Mendes, 2015 - Alto da Boa Vista",
+    "cep": "18013-280",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Sumaré",
+    "nome": "Fatec Sumaré (Região de Campinas)",
+    "endereco": "Rua Rafael Rossi, 197 - Jardim Luiz Cia - Caixa Postal 02242-010",
+    "cep": "13175-270",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Suzano",
+    "nome": "Fatec Suzano",
+    "endereco": "Av. Mogi das Cruzes, 1440 - Parque Suzano",
+    "cep": "08673-010",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Taquaritinga",
+    "nome": "Fatec Taquaritinga - Marlene Maria Miletta Servidoni",
+    "endereco": "Av. Dr. Flávio Henrique Lemos, 585 - Portal Itamaracá",
+    "cep": "15906-522",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Tatuí",
+    "nome": "Fatec Tatuí - Prof. Wilson Roberto Ribeiro de Camargo",
+    "endereco": "Rod. Mário Batista Mori, 971 - Jardim Aeroporto",
+    "cep": "18280-000",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Taubaté",
+    "nome": "Fatec Taubaté",
+    "endereco": "Av. Tomé Portes Del Rei, 525 - Vila São José",
+    "cep": "12070-610",
+    "uf": "SP"
+  },
+  {
+    "cidade": "Votorantim",
+    "nome": "Fatec Votorantim",
+    "endereco": "Av. Juscelino Kubitschek de Oliveira, 279 - Protestantes",
+    "cep": "18110-008",
+    "uf": "SP"
+  }
+]

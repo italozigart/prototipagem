@@ -1,0 +1,8 @@
+npm install @expo/vector-icons
+npm install @react-navigation/native
+npm install @react-navigation/native-stack
+npm install @react-navigation/stack
+npx expo install expo-location
+npx expo install react-native-maps
+npx expo install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated
+npx expo install react-dom react-native-web
