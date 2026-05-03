@@ -44,7 +44,7 @@ export default function ListarCarona() {
         {/* Button 2 - Solicitar Carona */}
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#E52929' }]}
-
+          onPress={() => navigation.navigate('SolicitarCarona')}
         >
           <FontAwesome5 name="hand-holding" style={styles.icon} size={24} color="white" />
           <Text style={styles.buttonText}>Solicitar{'\n'}Carona</Text>

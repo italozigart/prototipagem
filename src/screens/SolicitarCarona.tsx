@@ -11,10 +11,9 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    View
+    View,
 } from 'react-native';
 
-// ✅ Lazy import seguro
 import { RootStackParamList } from '@/app/index';
 import fatecsData from '@/src/assets/apis/fatecs.json';
 import MapNative from '@/src/components/MapNative';
@@ -71,16 +70,6 @@ type Fatec = {
     uf: string;
 };
 
-const formatReverseAddress = (addr: any) => {
-    return [
-        `${addr.street || ''}${addr.streetNumber ? ', ' + addr.streetNumber : ''}`.trim(),
-        addr.district,
-        addr.city,
-    ]
-        .filter(Boolean)
-        .join(' - ');
-};
-
 const fatecs = fatecsData as Fatec[];
 
 const normalizeText = (text: string) => {
@@ -113,6 +102,16 @@ const classTimeSuggestions = [
     { label: 'Aula 18:00', hour: 18, minute: 0 },
     { label: 'Aula 19:00', hour: 19, minute: 0 },
 ];
+
+const formatReverseAddress = (addr: any) => {
+    return [
+        `${addr.street || ''}${addr.streetNumber ? ', ' + addr.streetNumber : ''}`.trim(),
+        addr.district,
+        addr.city,
+    ]
+        .filter(Boolean)
+        .join(' - ');
+};
 
 const formatDateBR = (date: Date) => {
     const day = String(date.getDate()).padStart(2, '0');
@@ -175,14 +174,12 @@ const getCalendarDays = (date: Date) => {
     return [...blanks, ...days];
 };
 
-export default function OferecerViagem() {
+export default function SolicitarCarona() {
     const navigation = useNavigation<NavProp>();
-    const MAX_SEATS = 4;
     const dateInputRef = useRef<TextInput>(null);
     const timeInputRef = useRef<TextInput>(null);
 
-    const [seats, setSeats] = useState(1);
-    const [locationText, setLocationText] = useState('');
+    const [meetingPointText, setMeetingPointText] = useState('');
     const [searchText, setSearchText] = useState('');
     const [arrivalText, setArrivalText] = useState('');
     const [arrivalSuggestions, setArrivalSuggestions] = useState<Fatec[]>([]);
@@ -210,7 +207,7 @@ export default function OferecerViagem() {
             latitude,
             longitude,
         }));
-        setLocationText(address);
+        setMeetingPointText(address);
         setSearchText('');
         setSuggestions([]);
     };
@@ -331,16 +328,16 @@ export default function OferecerViagem() {
     };
 
     const searchTypedAddress = async (text = searchText) => {
-        const searchText = text.trim();
+        const currentSearchText = text.trim();
 
-        if (searchText.length < 3) {
+        if (currentSearchText.length < 3) {
             setSuggestions([]);
             return false;
         }
 
         try {
             setLoading(true);
-            const cleanCep = searchText.replace(/\D/g, '');
+            const cleanCep = currentSearchText.replace(/\D/g, '');
 
             if (cleanCep.length === 8) {
                 const cepAddress = await getAddressByCep(cleanCep);
@@ -362,10 +359,30 @@ export default function OferecerViagem() {
                 }
             }
 
-            return await geocodeAddress(searchText);
+            return await geocodeAddress(currentSearchText);
         } catch (err) {
             console.warn('Erro ao pesquisar endereco', err);
             return false;
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchSuggestions = async (text = searchText) => {
+        const currentSearchText = text.trim();
+
+        if (currentSearchText.length < 3) {
+            setSuggestions([]);
+            return;
+        }
+
+        try {
+            setLoading(true);
+            const results = await searchAddressResults(currentSearchText);
+            setSuggestions(results);
+        } catch (err) {
+            console.warn('Erro autocomplete', err);
+            setSuggestions([]);
         } finally {
             setLoading(false);
         }
@@ -396,13 +413,13 @@ export default function OferecerViagem() {
 
         setModalVisible(false);
     };
-    // 📍 localização atual
+
     useEffect(() => {
         (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
+            const { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') return;
 
-            let loc = await Location.getCurrentPositionAsync({});
+            const loc = await Location.getCurrentPositionAsync({});
 
             setRegion(prev => ({
                 ...prev,
@@ -410,51 +427,26 @@ export default function OferecerViagem() {
                 longitude: loc.coords.longitude,
             }));
 
-            let reverse = await Location.reverseGeocodeAsync(loc.coords);
+            const reverse = await Location.reverseGeocodeAsync(loc.coords);
             if (reverse.length > 0) {
-                const addr = reverse[0];
-                // Monta uma string amigável: "Rua Nome, 123 - Bairro"
-                const fullAddress = formatReverseAddress(addr);
-
-                // Se quiser incluir cidade também:
-                // const fullAddress = `${addr.street}, ${addr.streetNumber} - ${addr.district}, ${addr.city}`;
-
-                setLocationText(fullAddress || 'Localização desconhecida');
+                const fullAddress = formatReverseAddress(reverse[0]);
+                setMeetingPointText(fullAddress || 'Localizacao desconhecida');
             }
         })();
     }, []);
 
-    // 📍 atualizar endereço
     const updateAddress = async (coords: any) => {
         try {
             const reverse = await Location.reverseGeocodeAsync(coords);
             if (reverse.length > 0) {
-                const addr = reverse[0];
-                const fullAddress = formatReverseAddress(addr);
-                setLocationText(fullAddress || 'Localização selecionada');
+                const fullAddress = formatReverseAddress(reverse[0]);
+                setMeetingPointText(fullAddress || 'Localizacao selecionada');
             }
         } catch {
-            console.warn('Erro ao atualizar endereço');
+            console.warn('Erro ao atualizar endereco');
         }
     };
-    const fetchSuggestions = async (text = searchText) => {
-        const searchText = text.trim();
 
-        if (searchText.length < 3) {
-            setSuggestions([]);
-            return;
-        }
-        try {
-            setLoading(true);
-            const results = await searchAddressResults(searchText);
-            setSuggestions(results);
-        } catch (err) {
-            console.warn("Erro autocomplete", err);
-            setSuggestions([]);
-        } finally {
-            setLoading(false);
-        }
-    };
     const selectPlace = (item: Suggestion) => {
         moveMapToAddress(item.latitude, item.longitude, item.description);
     };
@@ -636,8 +628,6 @@ export default function OferecerViagem() {
 
     return (
         <View style={styles.container}>
-
-            {/* HEADER */}
             <View style={styles.header}>
                 <Image
                     source={require('@/src/assets/images/Logoh.png')}
@@ -654,23 +644,18 @@ export default function OferecerViagem() {
                     <Text style={styles.breadcrumbHome}>Home</Text>
                 </TouchableOpacity>
                 <Text style={styles.breadcrumbSeparator}> &gt; </Text>
-                <Text style={styles.breadcrumbCurrent}>Oferecer Viagem</Text>
+                <Text style={styles.breadcrumbCurrent}>Solicitar Carona</Text>
             </View>
 
-            {/* TÍTULO */}
-            <Text style={styles.title}>Oferecer Viagem</Text>
+            <Text style={styles.title}>Solicitar Carona</Text>
 
             <ScrollView
                 style={styles.forms}
                 contentContainerStyle={styles.formsContent}
                 showsVerticalScrollIndicator={false}
             >
-
-                {/* LOCALIZAÇÃO */}
                 <View style={styles.inputBox}>
-                    <Text style={styles.label}>
-                        Partida:
-                    </Text>
+                    <Text style={styles.label}>Partida:</Text>
 
                     <TouchableOpacity
                         style={styles.input}
@@ -680,7 +665,6 @@ export default function OferecerViagem() {
                             setModalVisible(true);
                         }}
                     >
-                        {/* Ícone de Localização */}
                         <MaterialCommunityIcons
                             name="map-marker-radius"
                             size={22}
@@ -688,22 +672,18 @@ export default function OferecerViagem() {
                             style={{ marginRight: 8 }}
                         />
 
-                        {/* Texto com limite de linha para não quebrar o layout */}
                         <Text
                             numberOfLines={1}
                             ellipsizeMode="tail"
-                            style={{ color: locationText ? '#000' : '#999', flex: 1 }}
+                            style={{ color: meetingPointText ? '#000' : '#444', flex: 1 }}
                         >
-                            {locationText || 'Selecionar partida'}
+                            {meetingPointText || 'Selecionar partida'}
                         </Text>
                     </TouchableOpacity>
                 </View>
 
-                {/* CHEGADA */}
                 <View style={styles.inputBox}>
-                    <Text style={styles.label}>
-                        Chegada:
-                    </Text>
+                    <Text style={styles.label}>Chegada:</Text>
 
                     <View style={styles.input}>
                         <MaterialCommunityIcons
@@ -749,11 +729,9 @@ export default function OferecerViagem() {
                     )}
                 </View>
 
-                {/* MODAL MAPA */}
                 <Modal visible={modalVisible} animationType="slide" transparent={true}>
                     <View style={styles.modalOverlay}>
                         <View style={styles.modalContent}>
-
                             <View style={styles.modalHeader}>
                                 <Text style={styles.modalTitle}>Selecionar Local</Text>
                                 <TouchableOpacity onPress={confirmLocation}>
@@ -762,8 +740,6 @@ export default function OferecerViagem() {
                             </View>
 
                             <View style={{ flex: 1 }}>
-
-                                {/* LEGENDA DO RESULTADO ATUAL SOBRE O MAPA */}
                                 <View style={styles.searchContainer}>
                                     <View style={styles.searchBox}>
                                         <MaterialCommunityIcons
@@ -807,22 +783,20 @@ export default function OferecerViagem() {
                                             ))}
                                         </View>
                                     )}
-
                                 </View>
+
                                 <MapNative
                                     region={region}
                                     setRegion={setRegion}
                                     updateAddress={updateAddress}
                                 />
                             </View>
-
                         </View>
                     </View>
-
                 </Modal>
-                {/* DATA E HORA */}
+
                 <View style={styles.inputBox}>
-                    <Text style={styles.label}>Data e Hora de Saída:</Text>
+                    <Text style={styles.label}>Data e horario desejado:</Text>
 
                     <View style={styles.rowInputs}>
                         <TouchableOpacity
@@ -850,8 +824,6 @@ export default function OferecerViagem() {
                                 onChangeText={handleDepartureDateChange}
                                 keyboardType="numeric"
                                 editable={manualDateInput}
-                                showSoftInputOnFocus={manualDateInput}
-                                maxLength={10}
                             />
                         </TouchableOpacity>
 
@@ -880,12 +852,9 @@ export default function OferecerViagem() {
                                 onChangeText={handleDepartureTimeChange}
                                 keyboardType="numeric"
                                 editable={manualTimeInput}
-                                showSoftInputOnFocus={manualTimeInput}
-                                maxLength={5}
                             />
                         </TouchableOpacity>
                     </View>
-
                 </View>
 
                 <Modal
@@ -926,39 +895,37 @@ export default function OferecerViagem() {
 
                             <View style={styles.calendarGrid}>
                                 {getCalendarDays(calendarMonth).map((day, index) => {
-                                    const today = new Date();
-                                    const dayDate = day
-                                        ? new Date(
-                                            calendarMonth.getFullYear(),
-                                            calendarMonth.getMonth(),
-                                            day
-                                        )
-                                        : null;
-                                    const isToday =
-                                        day === today.getDate() &&
-                                        calendarMonth.getMonth() === today.getMonth() &&
-                                        calendarMonth.getFullYear() === today.getFullYear();
-                                    const isDisabled = !dayDate || isBeforeToday(dayDate);
+                                    if (!day) {
+                                        return <View key={`blank-${index}`} style={styles.calendarDay} />;
+                                    }
+
+                                    const currentDate = new Date(
+                                        calendarMonth.getFullYear(),
+                                        calendarMonth.getMonth(),
+                                        day
+                                    );
+                                    const disabled = isBeforeToday(currentDate);
+                                    const today = isSameDay(currentDate, new Date());
 
                                     return (
                                         <TouchableOpacity
-                                            key={`${day || 'empty'}-${index}`}
+                                            key={day}
                                             style={[
                                                 styles.calendarDay,
-                                                isToday && styles.calendarToday,
-                                                isDisabled && styles.calendarDisabledDay,
+                                                today && styles.calendarToday,
+                                                disabled && styles.calendarDisabledDay,
                                             ]}
-                                            disabled={isDisabled}
-                                            onPress={() => day && selectCalendarDate(day)}
+                                            disabled={disabled}
+                                            onPress={() => selectCalendarDate(day)}
                                         >
                                             <Text
                                                 style={[
                                                     styles.calendarDayText,
-                                                    isToday && styles.calendarTodayText,
-                                                    isDisabled && styles.calendarDisabledText,
+                                                    today && styles.calendarTodayText,
+                                                    disabled && styles.calendarDisabledText,
                                                 ]}
                                             >
-                                                {day || ''}
+                                                {day}
                                             </Text>
                                         </TouchableOpacity>
                                     );
@@ -1094,52 +1061,12 @@ export default function OferecerViagem() {
                     </View>
                 </Modal>
 
-                {/* VAGAS */}
-                <View style={styles.inputBox}>
-                    <Text style={styles.label}>Lugares:</Text>
-
-                    <View style={styles.seatsRow}>
-
-                        <View style={styles.seatsIconsRow}>
-                            {Array.from({ length: MAX_SEATS }).map((_, index) => (
-                                <MaterialCommunityIcons
-                                    key={index}
-                                    name="seatbelt"
-                                    size={24}
-                                    color={index < seats ? '#E52929' : '#CFCFCF'}
-                                />
-                            ))}
-                        </View>
-
-                        <TouchableOpacity
-                            style={[styles.seatBtn, seats === 1 && { opacity: 0.4 }]}
-                            disabled={seats === 1}
-                            onPress={() => setSeats(seats - 1)}
-                        >
-                            <Text style={styles.seatBtnText}>-</Text>
-                        </TouchableOpacity>
-
-                        <Text style={styles.seatCount}>{seats}</Text>
-
-                        <TouchableOpacity
-                            style={[styles.seatBtn, seats === MAX_SEATS && { opacity: 0.4 }]}
-                            disabled={seats === MAX_SEATS}
-                            onPress={() => setSeats(seats + 1)}
-                        >
-                            <Text style={styles.seatBtnText}>+</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+           
                 <TouchableOpacity style={styles.confirmBtn}>
                     <Text style={styles.confirmBtnText}>Confirmar</Text>
                 </TouchableOpacity>
-
-                {/* BOTÃO */}
-
             </ScrollView>
 
-
-            {/* NAV */}
             <View style={styles.bottomNav}>
                 <TouchableOpacity style={styles.navItem}>
                     <AntDesign name="home" size={24} color="#444D5A" />
@@ -1148,7 +1075,7 @@ export default function OferecerViagem() {
                 <View style={styles.navDivider} />
 
                 <TouchableOpacity style={styles.navItem}>
-                    <MaterialCommunityIcons name="file-document-outline" size={24} color="#E52929" />
+                    <MaterialCommunityIcons name="car-multiple" size={26} color="#E52929" />
                 </TouchableOpacity>
 
                 <View style={styles.navDivider} />
@@ -1157,9 +1084,10 @@ export default function OferecerViagem() {
                     <FontAwesome5 name="user" size={24} color="#444D5A" />
                 </TouchableOpacity>
             </View>
-        </View >
+        </View>
     );
 }
+
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#FFF', paddingTop: 50 },
 
@@ -1227,22 +1155,24 @@ const styles = StyleSheet.create({
 
     formsContent: {
         alignItems: 'center',
-        paddingBottom: 18,
+        paddingBottom: 28,
     },
+
     modalOverlay: {
         flex: 1,
-        justifyContent: 'flex-end', // Empurra o modal para a parte de baixo da tela
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cria aquele efeito de fundo escurecido
+        justifyContent: 'flex-end',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
 
     modalContent: {
-        height: '80%', // Aqui você define que ele ocupa 80% da tela
+        height: '80%',
         backgroundColor: '#FFF',
-        borderTopLeftRadius: 24, // Arredonda as pontas de cima para ficar com cara de Bottom Sheet
+        borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
-        overflow: 'hidden', // Evita que o mapa vaze pelas bordas arredondadas
-        paddingBottom: 20, // Espaço extra embaixo, útil para iOS (Home Indicator)
+        overflow: 'hidden',
+        paddingBottom: 20,
     },
+
     searchContainer: {
         margin: 16,
         zIndex: 20,
@@ -1264,6 +1194,7 @@ const styles = StyleSheet.create({
         height: 44,
         fontSize: 14,
     },
+
     inlineInput: {
         flex: 1,
         minHeight: 24,
@@ -1271,44 +1202,21 @@ const styles = StyleSheet.create({
         color: '#222',
         outlineStyle: 'none' as any,
     },
+
     inputBox: {
         width: '85%',
         marginBottom: 18,
     },
+
     input: {
+        minHeight: 48,
         padding: 10,
         borderRadius: 12,
         backgroundColor: '#F7F7F7',
         borderWidth: 1,
         borderColor: '#DDD',
-        flexDirection: 'row', // Alinha o ícone e o texto lado a lado
-        alignItems: 'center', // Centraliza verticalmente
-    },
-
-    // --- NOVOS ESTILOS PARA A LEGENDA DO MAPA ---
-    mapLegend: {
-        position: 'absolute',
-        top: 16,
-        left: '5%',
-        width: '90%',
-        backgroundColor: '#FFF',
-        padding: 12,
-        borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        zIndex: 10, // Garante que fique por cima do MapNative
-        elevation: 5, // Sombra no Android
-        shadowColor: '#000', // Sombra no iOS
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-    },
-
-    mapLegendText: {
-        flex: 1,
-        fontSize: 14,
-        color: '#333',
-        fontWeight: '500',
     },
 
     label: {
@@ -1507,8 +1415,8 @@ const styles = StyleSheet.create({
     },
 
     classTimeSuggestions: {
-        width: '85%',
-        marginBottom: 18,
+        width: '100%',
+        marginTop: 14,
     },
 
     classTimeTitle: {
@@ -1552,47 +1460,12 @@ const styles = StyleSheet.create({
         color: '#999',
     },
 
-    iconInput: {
-        backgroundColor: '#E8E8E8',
-        borderRadius: 10,
-        padding: 12,
-    },
-
-    seatsRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: '100%',
-        gap: 12,
-    },
-
-    seatsIconsRow: { flexDirection: 'row', gap: 4 },
-
-    seatBtn: {
-        backgroundColor: '#E8E8E8',
-        borderRadius: 8,
-        width: 32,
-        height: 32,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-    seatBtnText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-
-    seatCount: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        minWidth: 24,
-        textAlign: 'center',
-    },
     suggestionBox: {
         position: 'absolute',
         top: 52,
         left: 0,
         right: 0,
-        backgroundColor: "#fff",
+        backgroundColor: '#fff',
         borderRadius: 8,
         maxHeight: 200,
         borderWidth: 1,
@@ -1604,8 +1477,9 @@ const styles = StyleSheet.create({
     suggestionItem: {
         padding: 10,
         borderBottomWidth: 1,
-        borderBottomColor: "#eee",
+        borderBottomColor: '#eee',
     },
+
     arrivalSuggestionBox: {
         marginTop: 6,
         backgroundColor: '#FFF',
@@ -1633,21 +1507,6 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#666',
     },
-    inputBoxRow: {
-        width: '85%',
-        backgroundColor: '#E8E8E8',
-        borderRadius: 10,
-        padding: 12,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
-        marginBottom: 18,
-    },
-
-    inputLabelRow: {
-        fontSize: 14,
-        fontWeight: '500',
-    },
 
     confirmBtn: {
         width: '70%',
@@ -1655,6 +1514,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingVertical: 16,
         alignItems: 'center',
+        marginTop: 42,
     },
 
     confirmBtnText: {
